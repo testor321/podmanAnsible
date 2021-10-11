@@ -1,0 +1,18 @@
+---
+- name: test containers
+  hosts: podman
+  remote_user: testor
+  become: false
+
+  tasks:
+  - name: Run three containers at once
+    containers.podman.podman_containers:
+      containers:
+        - name: alpine
+          image: alpine
+          command: sleep 1d
+        - name: web
+          image: nginx
+        - name: test
+          image: python:3-alpine
+          command: python -V
