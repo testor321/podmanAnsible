@@ -1,0 +1,19 @@
+---
+- name: install prerequisites on the new host
+  hosts: podman
+
+  tasks:
+  - name: install prerequisites for podman
+    ansible.builtin.yum: 
+      name:
+        - wget
+        - git
+        - bash-completion
+        - python38  
+        - dnf-utils
+        - zip
+        - unzip
+        - tar
+        - gzip
+      state: latest
+      update_cache: true

@@ -1,0 +1,14 @@
+---
+- name: install podman on the new host
+  hosts: podman
+
+  tasks:
+  - name: install prerequisites for podman
+    ansible.builtin.yum: 
+      name:
+        - oracle-epel-release-el8
+        - podman 
+        - buildah
+        - skopeo
+      state: latest
+      update_cache: true
