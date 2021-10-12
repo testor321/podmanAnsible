@@ -10,5 +10,6 @@
         - podman 
         - buildah
         - skopeo
+        - figlet
       state: latest
       update_cache: true
