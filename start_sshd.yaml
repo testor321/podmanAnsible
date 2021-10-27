@@ -1,0 +1,20 @@
+---
+- name: manage sshd-server container
+  hosts: podman
+  remote_user: testor
+  become: false
+
+  tasks:
+  - name: start sshd-server
+    containers.podman.podman_containers:
+      containers:
+        - name: sshd-server
+          image: docker.io/panubo/sshd 
+          state: started
+          volumes:
+            - /home/testor/.ssh/id_rsa.pub:/etc/authorized_keys/cloud_user:Z
+            - /home/testor/sshfiles:/sshfiles:Z
+          ports:
+            - "2223:22"
+          env:
+            SSH_USERS: "cloud_user:1001:1001" 

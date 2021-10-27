@@ -1,0 +1,13 @@
+---
+- name: manage sshd-server container
+  hosts: podman
+  remote_user: testor
+  become: false
+
+  tasks:
+  - name: stop sshd-server
+    containers.podman.podman_containers:
+      containers:
+        - name: sshd-server
+          image: docker.io/panubo/sshd 
+          state: stopped
