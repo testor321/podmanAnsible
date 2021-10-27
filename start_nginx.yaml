@@ -7,22 +7,22 @@
     params:
       - name: 'site1_server1'
         containerport: '8080'
-        hostport: '8081'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8081'
       - name: 'site1_server2'
         containerport: '8080'
-        hostport: '8082'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8082'
       - name: 'site1_server3'
         containerport: '8080'
-        hostport: '8083'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8083'
       - name: 'site2_server1'
         containerport: '8080'
-        hostport: '8084'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8084'
       - name: 'site2_server2'
         containerport: '8080'
-        hostport: '8085'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8085'
       - name: 'site2_server3'
         containerport: '8080'
-        hostport: '8086'
+        hostport: '{{ ansible_ens192.ipv4.address }}:8086'
 
 
 
