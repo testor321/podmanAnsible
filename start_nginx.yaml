@@ -1,0 +1,38 @@
+---
+- name: manage nginx containers
+  hosts: podman
+  remote_user: testor
+  become: false
+  vars:
+    params:
+      - name: 'site1_server1'
+        containerport: '8080'
+        hostport: '8081'
+      - name: 'site1_server2'
+        containerport: '8080'
+        hostport: '8082'
+      - name: 'site1_server3'
+        containerport: '8080'
+        hostport: '8083'
+      - name: 'site2_server1'
+        containerport: '8080'
+        hostport: '8084'
+      - name: 'site2_server2'
+        containerport: '8080'
+        hostport: '8085'
+      - name: 'site2_server3'
+        containerport: '8080'
+        hostport: '8086'
+
+
+
+  tasks:
+  - name: start nginx containers
+    containers.podman.podman_containers:
+      containers:    
+        - name: "{{ item.name }}"
+          image: docker.io/bitnami/nginx:latest
+          state: started
+          ports:
+            - "{{ item.hostport }}:{{ item.containerport }}"
+    loop: "{{ params }}"
